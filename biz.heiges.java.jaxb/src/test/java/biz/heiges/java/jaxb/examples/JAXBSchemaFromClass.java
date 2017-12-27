@@ -2,7 +2,7 @@ package biz.heiges.java.jaxb.examples;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
@@ -24,7 +24,9 @@ public class JAXBSchemaFromClass {
 			ctx.generateSchema(new SchemaOutputResolver() {
 				@Override
 				public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
-					return new StreamResult(new File("temp/person.xsd"));
+					StreamResult res = new StreamResult(new FileWriter("temp/person.xsd"));
+					res.setSystemId("1");
+					return res;
 				}
 			});
 		} catch (Exception e) {
