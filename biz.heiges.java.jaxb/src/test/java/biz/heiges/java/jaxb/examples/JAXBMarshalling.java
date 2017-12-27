@@ -94,7 +94,7 @@ public class JAXBMarshalling {
 			Marshaller marshaller = ctx.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.setProperty(Marshaller.JAXB_ENCODING, "ISO-8859-1" );
-			marshaller.marshal(p1, new File("temp/personWithRequiredFieldMissing.xml"));
+			marshaller.marshal(p1, new File("temp/person.xml"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
