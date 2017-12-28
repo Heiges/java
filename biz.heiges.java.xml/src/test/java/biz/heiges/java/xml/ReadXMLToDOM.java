@@ -1,31 +1,25 @@
 package biz.heiges.java.xml;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-import java.io.FileReader;
+import java.io.File;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.junit.Test;
-
-import biz.heiges.java.model.Address;
-import biz.heiges.java.model.Person;
+import org.w3c.dom.Document;
 
 public class ReadXMLToDOM {
 
 	@Test
 	public void testUnmashalling() {
 		try {
-			JAXBContext ctx = JAXBContext.newInstance(new Class[] { Person.class, Address.class });
-			Unmarshaller unmarshaller = ctx.createUnmarshaller();
-			Person p2 = (Person) unmarshaller.unmarshal(new FileReader("testcases/person.xml"));
-			assertEquals("Heiges", p2.getFamilieName());
-			assertEquals("Hansjoachim", p2.getSurName());
-			assertEquals("Hajo", p2.getNickName());
-			assertEquals("München", p2.getAddress().getCity());
-			assertEquals("Rotenhanstrasse 6", p2.getAddress().getStreet());
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder(); 
+			Document doc = db.parse(new File("testcases/person.xml"));
+			assertNotNull(doc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
