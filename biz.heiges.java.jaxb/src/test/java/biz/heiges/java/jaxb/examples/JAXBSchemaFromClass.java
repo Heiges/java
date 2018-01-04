@@ -16,6 +16,7 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamResult;
 
 import org.junit.Test;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import biz.heiges.java.model.Person;
@@ -75,18 +76,20 @@ public class JAXBSchemaFromClass {
 					return result;
 				}
 			});
-			
+
 			assertTrue(!results.isEmpty());
 			DOMResult domResult = results.get(0);
 			assertNotNull(domResult);
 			Node node = domResult.getNode();
 			assertNotNull(node);
-			
+			assertTrue(node instanceof Document);
+			Document doc = (Document) node;
+			assertNotNull(doc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
-		
+
 	}
 
 }
