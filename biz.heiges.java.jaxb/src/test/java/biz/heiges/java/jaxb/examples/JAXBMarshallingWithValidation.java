@@ -38,7 +38,7 @@ public class JAXBMarshallingWithValidation {
 	}
 
 	@Test(expected = UnmarshalException.class)
-	public void testUnmashalling() throws JAXBException, SAXException, IOException {
+	public void testUnmashallingWithValidation() throws JAXBException, SAXException, IOException {
 		JAXBContext ctx = JAXBContext.newInstance(new Class[] { Person.class, Address.class });
 		Unmarshaller unmarshaller = ctx.createUnmarshaller();
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
