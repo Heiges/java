@@ -30,7 +30,6 @@ public class JAXBMarshallingWithValidationHandler {
 		marshaller.setSchema(schema);
 
 		ValidationEventHandler veh = new ValidationEventHandler() {
-			@Override
 			public boolean handleEvent(ValidationEvent event) {
 				System.out.println(event.getMessage());
 				return false;
