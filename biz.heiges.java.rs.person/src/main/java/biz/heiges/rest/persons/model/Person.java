@@ -1,4 +1,4 @@
-package biz.heiges.rest.persons;
+package biz.heiges.rest.persons.model;
 
 import java.util.ArrayList;
 import java.util.List;

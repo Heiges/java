@@ -1,4 +1,4 @@
-package biz.heiges.rest.persons;
+package biz.heiges.rest.persons.model;
 
 import jakarta.ws.rs.Path;
 

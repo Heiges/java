@@ -3,6 +3,7 @@ package biz.heiges.rest.persons;
 import java.util.ArrayList;
 import java.util.List;
 
+import biz.heiges.rest.persons.model.Person;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
