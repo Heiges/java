@@ -54,5 +54,12 @@ public class PersonsTest {
         String responseMsg = target.path("persons/person/1").request().get(String.class);
         assertEquals("{\"familyName\":\"Heiges\",\"surname\":\"Hajo\"}", responseMsg);
     }
+
+    @Test
+    public void testGetAllPersons() {
+        String responseMsg = target.path("persons/all").request().get(String.class);
+        assertEquals("[{\"familyName\":\"Heiges\",\"surname\":\"Hajo\"},{\"familyName\":\"Heiges2\",\"surname\":\"Hajo2\"}]", responseMsg);
+    }
+
     
 }
