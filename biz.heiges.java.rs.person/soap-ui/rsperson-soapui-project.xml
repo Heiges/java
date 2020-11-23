@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="aaa8c63b-8f01-4861-86e9-71a45e608840" activeEnvironment="Default" name="rsperson" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+	<con:settings/>
+	<con:interface xsi:type="con:RestService" id="d9d2f67b-c184-459f-b411-ac7202caba01" wadlVersion="http://wadl.dev.java.net/2009/02" name="rsperson" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings>
+			<con:setting id="com.eviware.soapui.impl.rest.actions.service.Wadl2JavaAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Automatic Package Names" value="false"/>
+  <con:entry key="Output Directory" value=""/>
+  <con:entry key="JAXB Customization File(s)" value=""/>
+  <con:entry key="Java Args" value=""/>
+  <con:entry key="Package" value=""/>
+  <con:entry key="Tool Args" value=""/>
+</xml-fragment>]]></con:setting>
+		</con:settings>
+		<con:definitionCache type="TEXT" rootPart=""/>
+		<con:endpoints>
+			<con:endpoint>http://localhost:8080</con:endpoint>
+		</con:endpoints>
+		<con:resource name="persons" path="/persons/" id="0ad002e0-90e9-4c02-ab85-da4fd1346327">
+			<con:settings/>
+			<con:parameters/>
+			<con:method name="/persons" id="985f3651-9e7d-4c58-a8b1-7b750f0a6f2c" method="GET">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>text/plain</con:mediaType>
+					<con:status>200</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:request name="TC GET all persons" id="fbac2033-8e92-4092-948e-ec586af04f47" mediaType="application/json">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>http://localhost:8080/rsperson</con:endpoint>
+					<con:request/>
+					<con:originalUri>http://localhost/rsperson/person/1
+					</con:originalUri>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters/>
+				</con:request>
+			</con:method>
+		</con:resource>
+	<con:resource name="persons/person" path="/persons/person/{id}" id="5fb8c497-185d-47ec-956b-8850bc15d7cb"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>1</con:value><con:style>TEMPLATE</con:style><con:default>1</con:default></con:parameter></con:parameters><con:method name="persons/person/{id}" id="9e7e6943-ab8c-4031-bf09-f51f11453203" method="GET"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html;charset=ISO-8859-1</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ns="http://localhost/persons/person/1">ns:Response</con:element></con:representation><con:request name="Request 1" id="437caaf7-c51f-49b3-b64a-1a43034e9260" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/rsperson</con:endpoint><con:request/><con:originalUri>http://localhost/persons/person/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="all" path="/persons/all" id="9681fb9d-d301-4d73-8e14-bd9f20c6bd11"><con:settings/><con:parameters/><con:method name="/persons/all" id="d774c03e-855f-4b58-a85f-ea122df5438a" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>text/plain</con:mediaType><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" id="32e67e03-eb23-4558-b738-20687347650b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/rsperson</con:endpoint><con:request/><con:originalUri>http://localhost/rsperson/persons/all</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface>
+	<con:properties/>
+	<con:wssContainer/>
+	<con:oAuth2ProfileContainer/>
+	<con:oAuth1ProfileContainer/>
+<con:sensitiveInformation/></con:soapui-project>
