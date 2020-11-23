@@ -40,25 +40,25 @@ public class PersonsTest {
     @Test
     public void testGetIt() {
         String responseMsg = target.path("persons").request().get(String.class);
-        assertEquals("VieleHajos!", responseMsg);
+        assertEquals("{\"addresses\":[{\"streetName\":\"\"},{\"streetName\":\"\"}],\"familyName\":\"\",\"surname\":\"\"}", responseMsg);
     }
 
     @Test
     public void testGetAPersonWithoutId() {
         String responseMsg = target.path("persons/person").request().get(String.class);
-        assertEquals("{\"familyName\":\"Heiges\",\"surname\":\"Hajo\"}", responseMsg);
+        assertEquals("{\"addresses\":[{\"streetName\":\"\"},{\"streetName\":\"\"}],\"familyName\":\"\",\"surname\":\"\"}", responseMsg);
     }
 
     @Test
     public void testGetAPersonWithId() {
         String responseMsg = target.path("persons/person/1").request().get(String.class);
-        assertEquals("{\"familyName\":\"Heiges\",\"surname\":\"Hajo\"}", responseMsg);
+        assertEquals("{\"addresses\":[{\"streetName\":\"\"},{\"streetName\":\"\"}],\"familyName\":\"Heiges by id\",\"surname\":\"Hajo\"}", responseMsg);
     }
 
     @Test
     public void testGetAllPersons() {
         String responseMsg = target.path("persons/all").request().get(String.class);
-        assertEquals("[{\"familyName\":\"Heiges\",\"surname\":\"Hajo\"},{\"familyName\":\"Heiges2\",\"surname\":\"Hajo2\"}]", responseMsg);
+        assertEquals("[{\"addresses\":[{\"streetName\":\"\"},{\"streetName\":\"\"}],\"familyName\":\"Heiges1\",\"surname\":\"Hajo1\"},{\"addresses\":[{\"streetName\":\"\"},{\"streetName\":\"\"}],\"familyName\":\"Heiges2\",\"surname\":\"Hajo2\"}]", responseMsg);
     }
 
     

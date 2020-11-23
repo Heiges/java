@@ -1,27 +1,21 @@
 package biz.heiges.rest.persons;
 
-import jakarta.ws.rs.Path;
+import java.util.ArrayList;
+import java.util.List;
 
-@Path("person")
 public class Person {
 
-//    @GET
-//    @Produces({"text/plain"})
-//    public Person getPerson() {
-//    	System.out.println("called getPerson");
-//    	return this;
-//    }	
-
 	public Person(String surname, String familyName) {
-    	System.out.println("called person c-tor");
-    	setSurname(surname);
-    	setFamilyName(familyName);
+		System.out.println("called person c-tor");
+		setSurname(surname);
+		setFamilyName(familyName);
 	}
 
 	private String familyName;
 
-    private String surname;
+	private String surname;
 
+	private List<Address> addresses;
 
 	public String getFamilyName() {
 		return familyName;
@@ -39,8 +33,16 @@ public class Person {
 		this.surname = surname;
 	}
 
+	public List<Address> getAddresses() {
+		System.out.println("All known addresses");
+		addresses = new ArrayList<Address>();
+		addresses.add(new Address(""));
+		addresses.add(new Address(""));
+		return addresses;
+	}
 
-    
-    
-    
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
 }
