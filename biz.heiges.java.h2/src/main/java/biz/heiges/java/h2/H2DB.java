@@ -1,3 +1,4 @@
+package biz.heiges.java.h2;
 /*
  * Copyright 2004-2019 H2 Group. Multiple-Licensed under the MPL 2.0,
  * and the EPL 1.0 (https://h2database.com/html/license.html).
@@ -31,13 +32,8 @@ public class H2DB {
 		Connection conn = DriverManager.getConnection("jdbc:h2:~/test");
 		Statement stat = conn.createStatement();
 
-		// this line would initialize the database
-		// from the SQL script file 'init.sql'
-		// stat.execute("runscript from 'init.sql'");
+		stat.execute("runscript from 'classpath:/init.sql'");
 
-		stat.execute("create table test(id int primary key, name varchar(255))");
-		stat.execute("insert into test values(1, 'Hello')");
-		stat.execute("insert into test values(2, 'Hajo')");
 		ResultSet rs;
 		rs = stat.executeQuery("select * from test");
 		while (rs.next()) {
