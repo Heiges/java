@@ -1,12 +1,6 @@
 package biz.heiges.java.h2;
-/*
- * Copyright 2004-2019 H2 Group. Multiple-Licensed under the MPL 2.0,
- * and the EPL 1.0 (https://h2database.com/html/license.html).
- * Initial Developer: H2 Group
- */
 
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -27,7 +21,7 @@ public class H2DB {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		System.out.println("-- loading persons --");
 		Session session = sessionFactory.openSession();
-		List<Person> persons = session.createQuery("FROM Person").list();
+		List<PersonDAO> persons = session.createQuery("FROM PERSON").list();
 		persons.forEach((x) -> System.out.printf("- %s %s %n", x.getSurname(), x.getFamilyname()));
 		session.close();
 		sessionFactory.close();

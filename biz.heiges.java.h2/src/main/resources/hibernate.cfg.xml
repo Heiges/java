@@ -11,6 +11,6 @@
 		<property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.hbm2ddl.import_files">sql/initial_data.sql</property>
-		<mapping class="biz.heiges.java.h2.Person" />
+		<mapping class="biz.heiges.java.h2.PersonDAO" />
 	</session-factory>
 </hibernate-configuration>

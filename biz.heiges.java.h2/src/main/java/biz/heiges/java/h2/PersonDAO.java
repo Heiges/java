@@ -1,24 +1,29 @@
 package biz.heiges.java.h2;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Person {
+@Entity(name = "PERSON")
+public class PersonDAO implements Serializable {
 
-	public Person() {
+	private static final long serialVersionUID = 3284115550039763032L;
+
+	public PersonDAO() {
 	}
 
-	public Person(long id, String surname, String familyname) {
+	public PersonDAO(long id, String surname, String familyname) {
 		this.id = id;
 		this.surname = surname;
 		this.familyname = familyname;
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
 	@Column(name = "surname")
