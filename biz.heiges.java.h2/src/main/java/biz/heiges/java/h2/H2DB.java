@@ -5,13 +5,11 @@ package biz.heiges.java.h2;
  * Initial Developer: H2 Group
  */
 
+import java.util.List;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import org.h2.tools.DeleteDbFiles;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  * A very simple class that shows how to load the driver, create a database,
@@ -25,22 +23,14 @@ public class H2DB {
 	 * @param args ignored
 	 */
 	public static void main(String... args) throws Exception {
-		// delete the database named 'test' in the user home directory
-		DeleteDbFiles.execute("~", "test", true);
 
-		Class.forName("org.h2.Driver");
-		Connection conn = DriverManager.getConnection("jdbc:h2:~/test");
-		Statement stat = conn.createStatement();
-
-		stat.execute("runscript from 'classpath:/sql/init.sql'");
-
-		ResultSet rs;
-		rs = stat.executeQuery("select * from person");
-		while (rs.next()) {
-			System.out.println(rs.getString("surname") + " " +  rs.getString("familyname"));
-		}
-		stat.close();
-		conn.close();
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		System.out.println("-- loading persons --");
+		Session session = sessionFactory.openSession();
+		List<Person> persons = session.createQuery("FROM Person").list();
+		persons.forEach((x) -> System.out.printf("- %s %s %n", x.getSurname(), x.getFamilyname()));
+		session.close();
+		sessionFactory.close();
 	}
 
 }
