@@ -1,7 +1,3 @@
-import java.sql.SQLException;
-
-import org.h2.tools.Server;
-
 /*
  * Copyright 2004-2019 H2 Group. Multiple-Licensed under the MPL 2.0,
  * and the EPL 1.0 (https://h2database.com/html/license.html).
@@ -13,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import org.h2.tools.DeleteDbFiles;
 
 /**
