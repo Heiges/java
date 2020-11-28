@@ -35,9 +35,9 @@ public class H2DB {
 		stat.execute("runscript from 'classpath:/sql/init.sql'");
 
 		ResultSet rs;
-		rs = stat.executeQuery("select * from test");
+		rs = stat.executeQuery("select * from person");
 		while (rs.next()) {
-			System.out.println(rs.getString("name"));
+			System.out.println(rs.getString("surname") + " " +  rs.getString("familyname"));
 		}
 		stat.close();
 		conn.close();
