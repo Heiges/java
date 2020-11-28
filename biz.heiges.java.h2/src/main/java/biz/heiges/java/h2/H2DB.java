@@ -32,7 +32,7 @@ public class H2DB {
 		Connection conn = DriverManager.getConnection("jdbc:h2:~/test");
 		Statement stat = conn.createStatement();
 
-		stat.execute("runscript from 'classpath:/init.sql'");
+		stat.execute("runscript from 'classpath:/sql/init.sql'");
 
 		ResultSet rs;
 		rs = stat.executeQuery("select * from test");
