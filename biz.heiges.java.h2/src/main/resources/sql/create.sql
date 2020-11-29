@@ -1,0 +1,1 @@
+create table PERSON(id long primary key, surname varchar(255), familyname varchar(255))
