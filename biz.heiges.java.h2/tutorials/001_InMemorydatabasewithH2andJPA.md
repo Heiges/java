@@ -18,7 +18,7 @@ Build a H2 in memory database with JPA and Hibernate from scratch.
 
 - [jaxb Acitivation [javax.activation.activation]](https://mvnrepository.com/artifact/javax.activation/activation)
 
-### 3) Create the persistence.xml
+#### 3) Create the persistence.xml
 
 		<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -49,17 +49,17 @@ The same is true for the `drop-source` and `drop-script-source` properties. If t
 
 The property `sql-load-script-source` defines the place and name of the sql script that will be used for loading the initial data.
 
-### 4) Create the Entity Class
+#### 4) Create the Entity Class
 
 @todo
 
-### 5) Create the EntityManager and EntityManagerFactory
+#### 5) Create the EntityManager and EntityManagerFactory
 
 The class EntityManagerPool implements an easy class for handling the EntityManagerFactory and EntityManager itself.
 
 That class must be used with the try-resource or else the objects will not be closed correctly.
 
-### 6) Create a main driver
+#### 6) Create a main driver
 
 		try (EntityManagerPool emp = new EntityManagerPool("h2")) {
 			EntityManager em = emp.getEntityManager();
