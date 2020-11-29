@@ -16,14 +16,19 @@ public class PersonDAO implements Serializable {
 	public PersonDAO() {
 	}
 
+	public PersonDAO(String surname, String familyname) {
+		this.surname = surname;
+		this.familyname = familyname;
+	}
+	
 	public PersonDAO(long id, String surname, String familyname) {
-		this.id = id;
+		this.setId(id);
 		this.surname = surname;
 		this.familyname = familyname;
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name = "surname")
@@ -46,5 +51,13 @@ public class PersonDAO implements Serializable {
 
 	public void setFamilyname(String familyname) {
 		this.familyname = familyname;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

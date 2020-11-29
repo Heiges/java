@@ -15,6 +15,10 @@ public class EntityManagerPool implements AutoCloseable {
 		em= emf.createEntityManager();
 	}
 	
+	public EntityManagerFactory getEntityManagerFactory() {
+		return emf;
+	}
+	
 	public EntityManager getEntityManager() {
 		return em;
 	}
