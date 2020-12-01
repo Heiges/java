@@ -9,6 +9,7 @@
 	<properties>
 		<h2.version>1.4.200</h2.version>
 		<hibernate.version>5.2.10.Final</hibernate.version>
+		<dbunitVersion>2.7.0</dbunitVersion>
 	</properties>
 
 	<dependencies>
@@ -44,5 +45,11 @@
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>${dbunitVersion}</version>
+		</dependency>		
 	</dependencies>
 </project>
