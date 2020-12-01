@@ -32,10 +32,12 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 	// FIXME  
 	@SuppressWarnings("unchecked")
 	public List<PersonDAO> read() {
+		validateClazz();
 		return em.createNativeQuery("SELECT * FROM PERSON", clazz).getResultList();
 	}
 
 	public PersonDAO read(Long primaryKey) {
+		validateClazz();
 		return (PersonDAO) em.find(clazz, primaryKey);
 	}
 
@@ -58,7 +60,7 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 	}
 	
 	private void validateClazz() {
-		if (clazz == null) throw new IllegalArgumentException("now clazz given");
+		if (clazz == null) throw new IllegalArgumentException("no clazz given");
 	}
 	
 	public void setClazz(Class< T > clazz) {
