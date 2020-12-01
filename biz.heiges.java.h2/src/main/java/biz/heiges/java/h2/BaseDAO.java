@@ -29,6 +29,8 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 		transaction.commit();
 	}
 	
+	// FIXME  
+	@SuppressWarnings("unchecked")
 	public List<PersonDAO> read() {
 		return em.createNativeQuery("SELECT * FROM PERSON", clazz).getResultList();
 	}
