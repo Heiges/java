@@ -10,26 +10,31 @@ import javax.persistence.Persistence;
 
 public class BaseDAO<T extends Serializable> implements AutoCloseable {
 
-	private Class< T > clazz = null;
+	private Class<T> clazz = null;
 
 	private EntityManagerFactory emf = null;
 
 	private EntityManager em = null;
-	
-	private EntityTransaction transaction = null;	
-	
+
+	private EntityTransaction transaction = null;
+
 	public BaseDAO(String persistenceUnitName) {
 		emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-		em= emf.createEntityManager();
+		em = emf.createEntityManager();
 	}
-	
+
 	public void create(T entity) {
-		begin();
-		em.persist(new PersonDAO("Micky", "Mouse"));
-		transaction.commit();
+		try {
+			begin();
+			em.persist(entity);
+			transaction.commit();
+		} catch (Exception ex) {
+			transaction.rollback();
+			throw ex;
+		}
 	}
-	
-	// FIXME  
+
+	// FIXME
 	@SuppressWarnings("unchecked")
 	public List<PersonDAO> read() {
 		validateClazz();
@@ -42,15 +47,25 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 	}
 
 	public void update(PersonDAO entity) {
-		begin();
-		em.merge(entity);
-		transaction.commit();
+		try {
+			begin();
+			em.merge(entity);
+			transaction.commit();
+		} catch (Exception ex) {
+			transaction.rollback();
+			throw ex;
+		}
 	}
 
 	public void delete(PersonDAO entity) {
-		begin();
-		em.remove(entity);
-		transaction.commit();
+		try {
+			begin();
+			em.remove(entity);
+			transaction.commit();
+		} catch (Exception ex) {
+			transaction.rollback();
+			throw ex;
+		}
 	}
 
 	private void begin() {
@@ -58,19 +73,34 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 		transaction = em.getTransaction();
 		transaction.begin();
 	}
-	
+
 	private void validateClazz() {
-		if (clazz == null) throw new IllegalArgumentException("no clazz given");
+		if (clazz == null)
+			throw new IllegalArgumentException("no clazz given");
 	}
-	
-	public void setClazz(Class< T > clazz) {
+
+	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
 	}
-	
+
 	@Override
 	public void close() throws Exception {
 		System.out.println("calling close()");
-		if (em.isOpen() == true) em.close();
-		if(emf.isOpen() == true) emf.close();
+		if (em.isOpen() == true)
+			em.close();
+		if (emf.isOpen() == true)
+			emf.close();
+	}
+
+	protected EntityManager getEM() {
+		return this.em;
+	}
+
+	protected void setEm(EntityManager em) {
+		this.em = em;
+	}
+
+	protected EntityTransaction getTransactionForMock() {
+		return getEM().getTransaction();
 	}
 }
