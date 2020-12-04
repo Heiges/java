@@ -36,17 +36,18 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 
 	// FIXME
 	@SuppressWarnings("unchecked")
-	public List<PersonDAO> read() {
+	public List<T> read() {
 		validateClazz();
+		// FIXME only works with PERSON
 		return em.createNativeQuery("SELECT * FROM PERSON", clazz).getResultList();
 	}
 
-	public PersonDAO read(Long primaryKey) {
+	public T read(Long primaryKey) {
 		validateClazz();
-		return (PersonDAO) em.find(clazz, primaryKey);
+		return (T) em.find(clazz, primaryKey);
 	}
 
-	public void update(PersonDAO entity) {
+	public void update(T entity) {
 		try {
 			begin();
 			em.merge(entity);
@@ -57,7 +58,7 @@ public class BaseDAO<T extends Serializable> implements AutoCloseable {
 		}
 	}
 
-	public void delete(PersonDAO entity) {
+	public void delete(T entity) {
 		try {
 			begin();
 			em.remove(entity);
