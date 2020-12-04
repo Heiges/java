@@ -1,12 +1,16 @@
 package biz.heiges.java.h2;
 
 import java.util.List;
+import java.util.Scanner;
+
+import org.h2.tools.Server;
 
 public class Main {
 
 	public static void main(String... args) throws Exception {
-	
+
 		try (BaseDAO<PersonDAO> personDAO = new BaseDAO<PersonDAO>("h2")) {
+		
 			personDAO.setClazz(PersonDAO.class);
 			personDAO.create(new PersonDAO("Micky", "Mouse"));
 
@@ -29,6 +33,17 @@ public class Main {
 			personDAO.delete(personDAO.read(Long.parseLong("3")));
 			resultList = personDAO.read();
 			resultList.forEach((x) -> System.out.printf("- %s - %s %s %n", x.getId(), x.getSurname(), x.getFamilyname()));
+			
+			Server server = new Server();
+			server.runTool("-tcp", "-web", "-ifNotExists");
+			
+			System.out.print("Press enter to stop database!");
+			Scanner scan = new Scanner(System.in);
+			scan.nextLine();
+			scan.close();
+			System.out.println("Stopping server");
+			server.shutdown();
+			
 		}
 	}
 }

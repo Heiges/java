@@ -16,6 +16,9 @@ version="2.0">
 <!-- 			<property name="javax.persistence.schema-generation.drop-source" value="script"/> -->
 <!-- 			<property name="javax.persistence.schema-generation.drop-script-source" value="sql/drop.sql"/> -->
  			<property name="javax.persistence.sql-load-script-source" value="sql/initial_data.sql" />
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
 		</properties>
 	</persistence-unit>
 </persistence>
