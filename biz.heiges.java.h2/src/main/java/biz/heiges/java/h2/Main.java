@@ -34,6 +34,11 @@ public class Main {
 			resultList = personDAO.read();
 			resultList.forEach((x) -> System.out.printf("- %s - %s %s %n", x.getId(), x.getSurname(), x.getFamilyname()));
 			
+			System.out.println("Starting server...");
+	        System.out.println("URL      : http://localhost:8082/");
+	        System.out.println("JDBC URL : jdbc:h2:mem:my_database");
+	        System.out.println("User Name: sa");
+	        System.out.println("Password :");
 			Server server = new Server();
 			server.runTool("-tcp", "-web", "-ifNotExists");
 			
@@ -41,6 +46,7 @@ public class Main {
 			Scanner scan = new Scanner(System.in);
 			scan.nextLine();
 			scan.close();
+
 			System.out.println("Stopping server");
 			server.shutdown();
 			
