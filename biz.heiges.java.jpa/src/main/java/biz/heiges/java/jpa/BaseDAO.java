@@ -22,13 +22,13 @@ public class BaseDAO<T extends Serializable> {
 			em.persist(entity);
 			transaction.commit();
 		} catch (Exception ex) {
-			transaction.rollback();
+			rollback();
 			throw ex;
 		}
 	}
 
 	public T read(Long primaryKey) {
-		validateClazz();
+		validate();
 		return (T) em.find(clazz, primaryKey);
 	}
 
@@ -38,7 +38,7 @@ public class BaseDAO<T extends Serializable> {
 			em.merge(entity);
 			transaction.commit();
 		} catch (Exception ex) {
-			transaction.rollback();
+			rollback();
 			throw ex;
 		}
 	}
@@ -49,15 +49,26 @@ public class BaseDAO<T extends Serializable> {
 			em.remove(entity);
 			transaction.commit();
 		} catch (Exception ex) {
-			transaction.rollback();
+			rollback();
 			throw ex;
 		}
 	}
 
 	private void begin() {
-		validateClazz();
+		validate();
 		transaction = em.getTransaction();
 		transaction.begin();
+	}
+
+	private void rollback() {
+		if(transaction != null && transaction.isActive()) {
+			transaction.rollback();
+		}
+	}
+	
+	private void validate() {
+		validateClazz();
+		validateEntityManager();
 	}
 
 	private void validateClazz() {
@@ -65,11 +76,16 @@ public class BaseDAO<T extends Serializable> {
 			throw new IllegalArgumentException("no clazz given");
 	}
 
+	private void validateEntityManager() {
+		if (em == null)
+			throw new IllegalArgumentException("no entitymanager given");
+	}
+
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
 	}
 
-	protected void setEm(EntityManager em) {
+	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}
 }

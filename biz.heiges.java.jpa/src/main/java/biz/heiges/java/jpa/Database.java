@@ -21,7 +21,7 @@ public class Database implements AutoCloseable {
 		if (emf.isOpen() == true) emf.close();
 	}
 
-	protected EntityManager getEntityManager() {
+	public EntityManager getEntityManager() {
 		return em;
 	}
 }
