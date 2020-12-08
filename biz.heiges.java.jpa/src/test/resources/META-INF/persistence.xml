@@ -19,7 +19,20 @@ version="2.0">
  			<property name="javax.persistence.sql-load-script-source" value="sql/initial_data.sql" />
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
-
 		</properties>
 	</persistence-unit>
+	<persistence-unit name="entitiesWithoutCreate" transaction-type="RESOURCE_LOCAL">
+		<class>biz.heiges.java.jpa.ParentEntityDAO</class>
+		<class>biz.heiges.java.jpa.ChildEntityDAO</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+		</properties>
+	</persistence-unit>
+
 </persistence>

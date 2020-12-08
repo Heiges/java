@@ -8,6 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	BaseBAOTestMissingClass.class, 
 	BaseDAOTestCRUDwithAutoCommit.class,
+	BaseDAOTestCRUDwithAutoCommitTrueCallingCommit.class,
+	BaseDAOTestCRUDwithAutoCommitFalse.class,
 	BaseDAOTestMissingEnttityManager.class,
 	BaseDAOTestRollback.class
 })

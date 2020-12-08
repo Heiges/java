@@ -13,14 +13,20 @@ public class BaseDAO<T extends Serializable> {
 
 	private EntityTransaction transaction = null;
 
+	private boolean autoCommit = true;
+	
 	public BaseDAO() {
+	}
+
+	public BaseDAO(boolean autoComit ) {
+		this.autoCommit = autoComit; 
 	}
 
 	public void create(T entity) throws Exception {
 		try {
 			begin();
 			em.persist(entity);
-			transaction.commit();
+			if(autoCommit == true) transaction.commit();
 		} catch (Exception ex) {
 			rollback();
 			throw ex;
@@ -36,7 +42,7 @@ public class BaseDAO<T extends Serializable> {
 		try {
 			begin();
 			em.merge(entity);
-			transaction.commit();
+			if(autoCommit == true) transaction.commit();
 		} catch (Exception ex) {
 			rollback();
 			throw ex;
@@ -47,7 +53,7 @@ public class BaseDAO<T extends Serializable> {
 		try {
 			begin();
 			em.remove(entity);
-			transaction.commit();
+			if(autoCommit == true) transaction.commit();
 		} catch (Exception ex) {
 			rollback();
 			throw ex;
@@ -56,8 +62,21 @@ public class BaseDAO<T extends Serializable> {
 
 	private void begin() {
 		validate();
-		transaction = em.getTransaction();
-		transaction.begin();
+		if (autoCommit == false && transaction == null) {
+			// if not in autocommit mode get transaction only once
+			transaction = em.getTransaction();
+		}
+		else {
+			// if in autocommit mode always get a fresh transaction
+			transaction = em.getTransaction();
+		}
+		
+		if (autoCommit == true) {
+			transaction.begin();
+		} 
+		else if (transaction.isActive() == false) {
+			transaction.begin();
+		}
 	}
 
 	private void rollback() {
@@ -81,6 +100,15 @@ public class BaseDAO<T extends Serializable> {
 			throw new IllegalArgumentException("no entitymanager given");
 	}
 
+	public void commit() {
+		if (autoCommit == true) {
+			throw new IllegalStateException();
+		}
+		else if (transaction.isActive()){
+			transaction.commit();
+		}
+	}
+	
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
 	}
