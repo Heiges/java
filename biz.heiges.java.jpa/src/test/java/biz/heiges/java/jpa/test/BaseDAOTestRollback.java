@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 
 import biz.heiges.java.jpa.BaseDAO;
 import biz.heiges.java.jpa.Database;
+import biz.heiges.java.jpa.test.entities.ParentEntityDAO;
 
 public class BaseDAOTestRollback {
 

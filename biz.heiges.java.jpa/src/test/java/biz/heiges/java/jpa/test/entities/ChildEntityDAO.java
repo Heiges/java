@@ -1,4 +1,4 @@
-package biz.heiges.java.jpa.test;
+package biz.heiges.java.jpa.test.entities;
 
 import java.io.Serializable;
 
