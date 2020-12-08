@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 	BaseBAOTestMissingClass.class, 
-	BaseDAOTestCRUDwithAutoCommit.class,
+	BaseDAOTestCRUDwithAutoCommitTrue.class,
 	BaseDAOTestCRUDwithAutoCommitTrueCallingCommit.class,
 	BaseDAOTestCRUDwithAutoCommitFalse.class,
 	BaseDAOTestMissingEnttityManager.class,
