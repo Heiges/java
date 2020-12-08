@@ -51,7 +51,25 @@ The property `sql-load-script-source` defines the place and name of the sql scri
 
 #### 4) Create the Entity Class
 
-@todo
+The complete PersonDAO class can be be found [here](https://github.com/Heiges/java/blob/master/biz.heiges.java.h2/src/main/java/biz/heiges/java/h2/PersonDAO.java)
+
+The important parts are : 
+
+The class annotation @Entity where name refers to the table name.
+
+	@Entity(name = "PERSON")
+	public class PersonDAO implements Serializable {
+	
+The field annotation @Column where name refers to the column of the table.
+
+	@Column(name = "surname")
+	private String surname;
+
+The field annotation @ID where the annotation @GeneratedValue defines the strategy with which the id keys are generated.
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 #### 5) Create the EntityManager and EntityManagerFactory
 
