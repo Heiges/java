@@ -24,8 +24,4 @@ public class Database implements AutoCloseable {
 	public EntityManager getEntityManager() {
 		return em;
 	}
-
-	protected void setMockedEntityManager(EntityManager mockedEntityMananger) {
-		this.em = mockedEntityMananger;
-	}
 }
