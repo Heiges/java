@@ -3,6 +3,8 @@ package biz.heiges.java.jpa.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 
 import biz.heiges.java.jpa.BaseDAO;
@@ -20,7 +22,11 @@ public class BaseDAOTestRollback {
 			ParentEntityDAO e1 = new ParentEntityDAO("aValue1");
 			dao.create(e1);
 			assertEquals("aValue1", dao.read(Long.parseLong("3")).getaSimpleCharValue());
-			dao.rollback();
+			
+			Method method = dao.getClass().getDeclaredMethod("rollback");
+			method.setAccessible(true);
+			method.invoke(dao);
+			
 			assertNull(dao.read(Long.parseLong("3")));
 		}
 	}
@@ -37,7 +43,11 @@ public class BaseDAOTestRollback {
 			e1.setaSimpleCharValue("changed!");
 			dao.update(e1);
 			assertEquals("changed!", dao.read(Long.parseLong("2")).getaSimpleCharValue());
-			dao.rollback();
+			
+			Method method = dao.getClass().getDeclaredMethod("rollback");
+			method.setAccessible(true);
+			method.invoke(dao);
+			
 			assertEquals("aValueForEntityWithID2", dao.read(Long.parseLong("2")).getaSimpleCharValue());
 		}
 	}
@@ -51,7 +61,11 @@ public class BaseDAOTestRollback {
 			ParentEntityDAO e1 = dao.read(Long.parseLong("2"));
 			dao.delete(e1);
 			assertNull(dao.read(Long.parseLong("2")));
-			dao.rollback();
+			
+			Method method = dao.getClass().getDeclaredMethod("rollback");
+			method.setAccessible(true);
+			method.invoke(dao);
+			
 			assertEquals("aValueForEntityWithID2", dao.read(Long.parseLong("2")).getaSimpleCharValue());
 		}
 	}
