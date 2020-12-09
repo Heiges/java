@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	BaseDAOTestCRUDwithAutoCommitTrue.class,
 	BaseDAOTestCRUDwithAutoCommitTrueCallingCommit.class,
 	BaseDAOTestCRUDwithAutoCommitFalse.class,
-	BaseDAOTestRollback.class
+	BaseDAOTestMockedEntityManagerExceptionRethrown.class
 })
 public class AllTests {
 
