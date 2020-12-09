@@ -79,7 +79,7 @@ public class BaseDAO<T extends Serializable> {
 		}
 	}
 
-	private void rollback() {
+	public void rollback() {
 		if(transaction != null && transaction.isActive()) {
 			transaction.rollback();
 		}

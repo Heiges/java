@@ -6,12 +6,14 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
+	BaseDAOTestCrud.class,	
 	BaseBAOTestMissingClass.class, 
-	BaseDAOTestMissingEnttityManager.class,
+	BaseDAOTestMissingEntityManager.class,
 	BaseDAOTestCRUDwithAutoCommitTrue.class,
 	BaseDAOTestCRUDwithAutoCommitTrueCallingCommit.class,
 	BaseDAOTestCRUDwithAutoCommitFalse.class,
-	BaseDAOTestMockedEntityManagerExceptionRethrown.class
+	BaseDAOTestMockedEntityManagerExceptionRethrown.class,
+	BaseDAOTestRollback.class
 })
 public class AllTests {
 
