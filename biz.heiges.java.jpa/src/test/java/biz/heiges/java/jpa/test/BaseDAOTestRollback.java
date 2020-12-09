@@ -3,6 +3,7 @@ package biz.heiges.java.jpa.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
@@ -22,15 +23,10 @@ public class BaseDAOTestRollback {
 			ParentEntityDAO e1 = new ParentEntityDAO("aValue1");
 			dao.create(e1);
 			assertEquals("aValue1", dao.read(Long.parseLong("3")).getaSimpleCharValue());
-			
-			Method method = dao.getClass().getDeclaredMethod("rollback");
-			method.setAccessible(true);
-			method.invoke(dao);
-			
+			rollback(dao);
 			assertNull(dao.read(Long.parseLong("3")));
 		}
 	}
-	
 	
 	@Test
 	public void testEntityManagerThrowsExceptionsWithMerge() throws Exception {
@@ -43,15 +39,11 @@ public class BaseDAOTestRollback {
 			e1.setaSimpleCharValue("changed!");
 			dao.update(e1);
 			assertEquals("changed!", dao.read(Long.parseLong("2")).getaSimpleCharValue());
-			
-			Method method = dao.getClass().getDeclaredMethod("rollback");
-			method.setAccessible(true);
-			method.invoke(dao);
-			
+			rollback(dao);
 			assertEquals("aValueForEntityWithID2", dao.read(Long.parseLong("2")).getaSimpleCharValue());
 		}
 	}
-	
+
 	@Test
 	public void testEntityManagerThrowsExceptionsWithRemove() throws Exception {
 		try (Database database = new Database("entities")) {
@@ -61,12 +53,15 @@ public class BaseDAOTestRollback {
 			ParentEntityDAO e1 = dao.read(Long.parseLong("2"));
 			dao.delete(e1);
 			assertNull(dao.read(Long.parseLong("2")));
-			
-			Method method = dao.getClass().getDeclaredMethod("rollback");
-			method.setAccessible(true);
-			method.invoke(dao);
-			
+			rollback(dao);
 			assertEquals("aValueForEntityWithID2", dao.read(Long.parseLong("2")).getaSimpleCharValue());
 		}
 	}
+	
+	private void rollback(BaseDAO<ParentEntityDAO> dao) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		Method method = dao.getClass().getDeclaredMethod("rollback");
+		method.setAccessible(true);
+		method.invoke(dao);
+	}
+
 }
