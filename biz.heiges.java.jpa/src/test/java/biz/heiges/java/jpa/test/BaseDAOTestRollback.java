@@ -63,5 +63,4 @@ public class BaseDAOTestRollback {
 		method.setAccessible(true);
 		method.invoke(dao);
 	}
-
 }
