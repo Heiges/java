@@ -102,7 +102,7 @@ public class BaseDAO<T extends Serializable> {
 
 	public void commit() {
 		if (autoCommit == true) {
-			throw new IllegalStateException();
+			throw new IllegalStateException("calling commit not allowed when autocommit == true");
 		}
 		else if (transaction.isActive()){
 			transaction.commit();
