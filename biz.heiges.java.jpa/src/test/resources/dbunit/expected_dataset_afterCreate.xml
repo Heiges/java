@@ -1,10 +1,12 @@
 <dataset>
-	<PARENT_ENTITIES
+	<PARENT_ENTITIES 
 		id ="0" aSimpleCharValue="aValueForEntityWithID0_andDBUnit" />
 	<PARENT_ENTITIES
 		id ="1" aSimpleCharValue="aValueForEntityWithID1_andDBUnit" />
 	<PARENT_ENTITIES
 		id ="2" aSimpleCharValue="aValueForEntityWithID2_andDBUnit" />
+	<PARENT_ENTITIES
+		id ="3" aSimpleCharValue="another Value" />		
 </dataset>
 
 
