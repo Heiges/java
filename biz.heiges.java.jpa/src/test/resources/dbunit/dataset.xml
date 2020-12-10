@@ -1,0 +1,10 @@
+<dataset>
+	<PARENT_ENTITIES
+		aSimpleCharValue="aValueForEntityWithID0_andDBUnit" />
+	<PARENT_ENTITIES
+		aSimpleCharValue="aValueForEntityWithID1_andDBUnit" />
+	<PARENT_ENTITIES
+		aSimpleCharValue="aValueForEntityWithID2_andDBUnit" />
+</dataset>
+
+
