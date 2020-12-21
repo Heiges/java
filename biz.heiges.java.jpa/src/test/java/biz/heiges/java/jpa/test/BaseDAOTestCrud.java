@@ -29,8 +29,11 @@ public class BaseDAOTestCrud {
 			dao.setClazz(ParentEntityDAO.class);
 			dao.setEntityManager(database.getEntityManager());
 			assertEquals("aValueForEntityWithID0", dao.read(Long.parseLong("0")).getaSimpleCharValue());
+			assertEquals("value desc 0", dao.read(Long.parseLong("0")).getaEnumValue().getDescription());
 			assertEquals("aValueForEntityWithID1", dao.read(Long.parseLong("1")).getaSimpleCharValue());
+			assertEquals("value desc 1", dao.read(Long.parseLong("1")).getaEnumValue().getDescription());
 			assertEquals("aValueForEntityWithID2", dao.read(Long.parseLong("2")).getaSimpleCharValue());
+			assertEquals("value desc 2", dao.read(Long.parseLong("2")).getaEnumValue().getDescription());
 			assertNull(dao.read(Long.parseLong("3")));
 		}
 	}

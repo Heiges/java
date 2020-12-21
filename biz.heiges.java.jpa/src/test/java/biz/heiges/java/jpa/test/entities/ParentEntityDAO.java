@@ -27,6 +27,9 @@ public class ParentEntityDAO implements Serializable {
 	@Column(name = "aSimpleCharValue")
 	private String aSimpleCharValue;
 
+	@Column(name = "aEnumValue")
+	private EnumType aEnumValue;
+	
 	public String getaSimpleCharValue() {
 		return aSimpleCharValue;
 	}
@@ -43,5 +46,30 @@ public class ParentEntityDAO implements Serializable {
 		this.id = id;
 	}	
 	
-	
+	public EnumType getaEnumValue() {
+		return aEnumValue;
+	}
+
+	public void setaEnumValue(EnumType aEnumValue) {
+		this.aEnumValue = aEnumValue;
+	}
+
+	public enum EnumType {
+		
+		VAL1("value desc 0"), VAL2("value desc 1"), VAL3("value desc 2");
+		
+		private String description;
+
+		private EnumType(String desc) {
+			this.setDescription(desc);				
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+	}
 }
