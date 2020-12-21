@@ -29,8 +29,6 @@ public class ParentEntityDAO implements Serializable {
 
 	private String aSimpleCharValue;
 
-	private EnumType aEnumValue;
-
 	@OneToMany(mappedBy = "parentID", cascade=CascadeType.ALL )
 	private List<ChildEntityDAO> childs = new ArrayList<ChildEntityDAO>();
 
@@ -50,38 +48,11 @@ public class ParentEntityDAO implements Serializable {
 		this.id = id;
 	}
 
-	public EnumType getaEnumValue() {
-		return aEnumValue;
-	}
-
-	public void setaEnumValue(EnumType aEnumValue) {
-		this.aEnumValue = aEnumValue;
-	}
-
 	public List<ChildEntityDAO> getChilds() {
 		return childs;
 	}
 
 	public void setChilds(List<ChildEntityDAO> childs) {
 		this.childs = childs;
-	}
-
-	public enum EnumType {
-
-		VAL1("value desc 0"), VAL2("value desc 1"), VAL3("value desc 2");
-
-		private String description;
-
-		private EnumType(String desc) {
-			this.setDescription(desc);
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
 	}
 }

@@ -19,7 +19,6 @@ public class Main {
 			dao.setEntityManager(database.getEntityManager());
 
 			ParentEntityDAO parent = new ParentEntityDAO("neu angelegt");
-			parent.setaEnumValue(ParentEntityDAO.EnumType.VAL1);
 
 			ChildEntityDAO child = null;
 
@@ -47,7 +46,6 @@ public class Main {
 					} 
 					else {
 						System.out.println(parentEntityDAO.getaSimpleCharValue());
-						System.out.println(parentEntityDAO.getaEnumValue());
 						System.out.println(parentEntityDAO.getChilds().get(0).getaSimpleCharValue());
 						System.out.println(parentEntityDAO.getChilds().get(1).getaSimpleCharValue());
 					}

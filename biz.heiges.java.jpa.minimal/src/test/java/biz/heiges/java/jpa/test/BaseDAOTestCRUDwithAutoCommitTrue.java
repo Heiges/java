@@ -23,7 +23,6 @@ public class BaseDAOTestCRUDwithAutoCommitTrue {
 				dao.setEntityManager(database.getEntityManager());
 
 				ParentEntityDAO parent = new ParentEntityDAO("neu angelegt");
-				parent.setaEnumValue(ParentEntityDAO.EnumType.VAL1);
 
 				ChildEntityDAO child = null;
 
@@ -60,7 +59,6 @@ public class BaseDAOTestCRUDwithAutoCommitTrue {
 				dao2.setClazz(ParentEntityDAO.class);
 				dao2.setEntityManager(databaseWithoutCreate.getEntityManager());
 				assertEquals("neu angelegt", dao2.read(Long.parseLong("1")).getaSimpleCharValue());
-				assertEquals(ParentEntityDAO.EnumType.VAL1, dao2.read(Long.parseLong("1")).getaEnumValue());
 				assertEquals("child val1", dao2.read(Long.parseLong("1")).getChilds().get(0).getaSimpleCharValue());
 				assertEquals("child val2", dao2.read(Long.parseLong("1")).getChilds().get(1).getaSimpleCharValue());
 			}
