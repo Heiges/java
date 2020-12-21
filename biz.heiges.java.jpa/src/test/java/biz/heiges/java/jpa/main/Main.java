@@ -9,24 +9,15 @@ import biz.heiges.java.jpa.Database;
 import biz.heiges.java.jpa.test.entities.ChildEntityDAO;
 import biz.heiges.java.jpa.test.entities.ParentEntityDAO;
 
-
 public class Main {
 
 	public static void main(String... args) throws Exception {
 		try (Database database = new Database("entities")) {
 			
-			
 			BaseDAO<ParentEntityDAO> dao = new BaseDAO<ParentEntityDAO>();
 			dao.setClazz(ParentEntityDAO.class);
 			dao.setEntityManager(database.getEntityManager());
 
-			BaseDAO<ChildEntityDAO> cdao = new BaseDAO<ChildEntityDAO>();
-			cdao.setClazz(ChildEntityDAO.class);
-			cdao.setEntityManager(database.getEntityManager());
-
-			
-			
-			
 			ParentEntityDAO parent = new ParentEntityDAO("neu angelegt");
 
 			ChildEntityDAO child = null;
@@ -44,7 +35,6 @@ public class Main {
 			parent.getChilds().add(child);
 
 			dao.create(parent);
-
 			
 			System.out.println("Starting server...");
 	        System.out.println("URL      : http://localhost:8082/");
