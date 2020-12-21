@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import biz.heiges.java.jpa.BaseDAO;
 import biz.heiges.java.jpa.Database;
+import biz.heiges.java.jpa.test.entities.ChildEntityDAO;
 import biz.heiges.java.jpa.test.entities.ParentEntityDAO;
 
 public class BaseDAOTestCRUDwithAutoCommitTrue {
@@ -19,8 +20,23 @@ public class BaseDAOTestCRUDwithAutoCommitTrue {
 				BaseDAO<ParentEntityDAO> dao = new BaseDAO<ParentEntityDAO>();
 				dao.setClazz(ParentEntityDAO.class);
 				dao.setEntityManager(database.getEntityManager());
-				dao.create(new ParentEntityDAO("another Value"));
-				assertEquals("another Value", dao.read(Long.parseLong("3")).getaSimpleCharValue());
+
+				ParentEntityDAO entity = new ParentEntityDAO("another Value");
+				ChildEntityDAO child = null;
+				
+				child = new ChildEntityDAO(entity);
+				child.setaSimpleCharValue("val1");
+				entity.getChilds().add(child);
+				
+				child = new ChildEntityDAO(entity);
+				child.setaSimpleCharValue("val2");
+				entity.getChilds().add(child);
+				
+				child = new ChildEntityDAO(entity);
+				child.setaSimpleCharValue("val3");
+				entity.getChilds().add(child);
+				
+				dao.create(entity);
 			}
 			
 			try (Database databaseWithoutCreate = new Database("entitiesWithoutCreate")) {
@@ -28,6 +44,9 @@ public class BaseDAOTestCRUDwithAutoCommitTrue {
 				dao2.setClazz(ParentEntityDAO.class);
 				dao2.setEntityManager(databaseWithoutCreate.getEntityManager());
 				assertEquals("another Value", dao2.read(Long.parseLong("3")).getaSimpleCharValue());
+				assertEquals("val1", dao2.read(Long.parseLong("3")).getChilds().get(0).getaSimpleCharValue());
+				assertEquals("val2", dao2.read(Long.parseLong("3")).getChilds().get(1).getaSimpleCharValue());
+				assertEquals("val3", dao2.read(Long.parseLong("3")).getChilds().get(2).getaSimpleCharValue());
 			}			
 		}
 	}

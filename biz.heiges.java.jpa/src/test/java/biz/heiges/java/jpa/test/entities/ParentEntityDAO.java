@@ -1,12 +1,16 @@
 package biz.heiges.java.jpa.test.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "PARENT_ENTITIES")
 public class ParentEntityDAO implements Serializable {
@@ -18,18 +22,21 @@ public class ParentEntityDAO implements Serializable {
 
 	public ParentEntityDAO(String val) {
 		this.setaSimpleCharValue(val);
-	}	
-	
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(name = "aSimpleCharValue")
 	private String aSimpleCharValue;
 
 	@Column(name = "aEnumValue")
 	private EnumType aEnumValue;
-	
+
+	@OneToMany(mappedBy = "parentKEY", cascade=CascadeType.ALL )
+	private List<ChildEntityDAO> childs = new ArrayList<ChildEntityDAO>();
+
 	public String getaSimpleCharValue() {
 		return aSimpleCharValue;
 	}
@@ -44,8 +51,8 @@ public class ParentEntityDAO implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}	
-	
+	}
+
 	public EnumType getaEnumValue() {
 		return aEnumValue;
 	}
@@ -54,14 +61,22 @@ public class ParentEntityDAO implements Serializable {
 		this.aEnumValue = aEnumValue;
 	}
 
+	public List<ChildEntityDAO> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<ChildEntityDAO> childs) {
+		this.childs = childs;
+	}
+
 	public enum EnumType {
-		
+
 		VAL1("value desc 0"), VAL2("value desc 1"), VAL3("value desc 2");
-		
+
 		private String description;
 
 		private EnumType(String desc) {
-			this.setDescription(desc);				
+			this.setDescription(desc);
 		}
 
 		public String getDescription() {
