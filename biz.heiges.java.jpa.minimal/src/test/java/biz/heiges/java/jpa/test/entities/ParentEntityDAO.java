@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity/*(name = "PARENT_ENTITIES")*/
+@Entity
 public class ParentEntityDAO implements Serializable {
 
 	private static final long serialVersionUID = 3284115550039763032L;
@@ -27,10 +27,8 @@ public class ParentEntityDAO implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-//	@Column(name = "aSimpleCharValue")
 	private String aSimpleCharValue;
 
-//	@Column(name = "aEnumValue")
 	private EnumType aEnumValue;
 
 	@OneToMany(mappedBy = "parentID", cascade=CascadeType.ALL )
