@@ -11,7 +11,7 @@
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<dbunitVersion>2.7.0</dbunitVersion>
 		<mockitoVersion>3.6.28</mockitoVersion>
-		<junitVersion>4.12</junitVersion>
+		<junitVersion>4.13.1</junitVersion>
 	</properties>
 
 	<dependencies>
